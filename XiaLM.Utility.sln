@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.Tcp", "XiaLM.Tcp\XiaL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.Owin", "XiaLM.Owin\XiaLM.Owin.csproj", "{8C6B231E-9485-44BD-81FE-7AF983BE091A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.ConsoleTest", "XiaLM.ConsoleTest\XiaLM.ConsoleTest.csproj", "{315D868A-C07B-46DC-B2AB-CCB640855AF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.FormTest", "XiaLM.FormTest\XiaLM.FormTest.csproj", "{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{8C6B231E-9485-44BD-81FE-7AF983BE091A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C6B231E-9485-44BD-81FE-7AF983BE091A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C6B231E-9485-44BD-81FE-7AF983BE091A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{315D868A-C07B-46DC-B2AB-CCB640855AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315D868A-C07B-46DC-B2AB-CCB640855AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315D868A-C07B-46DC-B2AB-CCB640855AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315D868A-C07B-46DC-B2AB-CCB640855AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
