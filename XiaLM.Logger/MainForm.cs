@@ -1,4 +1,4 @@
-﻿using LogHelp.Model;
+﻿using XiaLM.Logger.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LogHelp
+namespace XiaLM.Logger
 {
     public partial class MainForm : Form
     {

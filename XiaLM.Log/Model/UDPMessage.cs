@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogTool.Model
+namespace XiaLM.Log.Model
 {
     /// <summary>
     /// UDP消息实体

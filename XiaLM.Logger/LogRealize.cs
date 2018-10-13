@@ -1,15 +1,15 @@
 ﻿using log4net;
 using log4net.Config;
-using LogHelp.Model;
+using XiaLM.Logger.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LogHelp.Model.UDPMessage;
+using static XiaLM.Logger.Model.UDPMessage;
 
-namespace LogHelp
+namespace XiaLM.Logger
 {
     public class LogRealize
     {

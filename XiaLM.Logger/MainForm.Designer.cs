@@ -1,4 +1,4 @@
-﻿namespace LogHelp
+﻿namespace XiaLM.Logger
 {
     partial class MainForm
     {

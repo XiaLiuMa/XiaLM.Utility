@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogHelp.Model
+namespace XiaLM.Logger.Model
 {
     public class LogPage
     {
