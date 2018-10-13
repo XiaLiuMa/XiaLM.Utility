@@ -30,8 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -54,6 +69,7 @@
     <Compile Include="source\common\CmdHelper.cs" />
     <Compile Include="source\common\ConvertHelper.cs" />
     <Compile Include="source\common\CrcVerifyHelper .cs" />
+    <Compile Include="source\common\DatabaseHelper.cs" />
     <Compile Include="source\common\EncryptHelper.cs" />
     <Compile Include="source\common\FileReadWriteHelper.cs" />
     <Compile Include="source\common\HttpClientHelper.cs" />
@@ -62,8 +78,10 @@
     <Compile Include="source\common\ReflectionHelper .cs" />
     <Compile Include="source\common\ResourceHelper.cs" />
     <Compile Include="source\common\SerializeHelper.cs" />
+    <Compile Include="source\common\StrSimilarityHelper.cs" />
     <Compile Include="source\common\TaskExtensionHelper.cs" />
     <Compile Include="source\common\ValidatorHelper.cs" />
+    <Compile Include="source\filehelper\ExcelHelper.cs" />
     <Compile Include="source\tcp\IParser.cs" />
     <Compile Include="source\tcp\XlmParser.cs" />
     <Compile Include="source\tcp\XlmTcpClient.cs" />

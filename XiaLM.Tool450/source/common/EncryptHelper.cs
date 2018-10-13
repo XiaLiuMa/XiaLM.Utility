@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace XiaLM.Tool450.source.common
 {
@@ -36,65 +33,38 @@ namespace XiaLM.Tool450.source.common
         }
 
         /// <summary>
-        /// Base64加密(未传递编码类型默认采用utf8编码方式加密)
+        /// MD5码加密字符串(32位小写)
         /// </summary>
-        /// <param name="source">待加密的明文</param>
-        /// <returns>加密后的字符串</returns>
-        public static string Base64Encode(string source)
-        {
-            return Base64Encode(source, Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// Base64加密
-        /// </summary>
-        /// <param name="source">待加密的明文</param>
-        /// <param name="encodeType">加密采用的编码方式</param>
+        /// <param name="txt"></param>
         /// <returns></returns>
-        public static string Base64Encode(string source, Encoding encodeType)
+        public static string Md5Encryp(string txt)
         {
-            string encode = string.Empty;
-            byte[] bytes = encodeType.GetBytes(source);
-            try
+            string result = string.Empty;
+            MD5 md5 = MD5.Create();
+            byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(txt));
+            for (int i = 0; i < bytes.Length; i++)
             {
-                encode = Convert.ToBase64String(bytes);
+                result += bytes[i].ToString("x2");//每个元素进行十六进制转换然后拼接成s字符串
             }
-            catch
-            {
-                encode = source;
-            }
-            return encode;
+            return result;
         }
 
         /// <summary>
-        /// Base64解密(未传递编码类型默认采用utf8编码方式解密)
+        /// 获取 utc 1970-1-1到现在的秒数
         /// </summary>
-        /// <param name="result">待解密的密文</param>
-        /// <returns>解密后的字符串</returns>
-        public static string Base64Decode(string result)
+        /// <returns></returns>
+        public static long Get1970ToNowSeconds()
         {
-            return Base64Decode(result, Encoding.UTF8);
+            return (DateTime.UtcNow.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
         }
 
         /// <summary>
-        /// Base64解密
+        /// 获取 utc 1970-1-1到现在的毫秒数
         /// </summary>
-        /// <param name="result">待解密的密文</param>
-        /// <param name="encodeType">解密采用的编码方式，注意和加密时采用的方式一致</param>
-        /// <returns>解密后的字符串</returns>
-        public static string Base64Decode(string result, Encoding encodeType)
+        /// <returns></returns>
+        public static long Get1970ToNowMilliseconds()
         {
-            string decode = string.Empty;
-            byte[] bytes = Convert.FromBase64String(result);
-            try
-            {
-                decode = encodeType.GetString(bytes);
-            }
-            catch
-            {
-                decode = result;
-            }
-            return decode;
+            return (DateTime.UtcNow.ToUniversalTime().Ticks - 621355968000000000) / 10000;
         }
 
         ///// <summary>
