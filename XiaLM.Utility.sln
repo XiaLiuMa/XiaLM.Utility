@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.ConsoleTest", "XiaLM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiaLM.FormTest", "XiaLM.FormTest\XiaLM.FormTest.csproj", "{A5C5E7BF-A47E-4B16-9081-560F407B7ABF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{6F9EFBFD-1F4B-4F54-87AC-ED86A0C28859}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E4BFD6BC-1F1F-4D77-85EC-5CA400E3B368} = {6F9EFBFD-1F4B-4F54-87AC-ED86A0C28859}
+		{010318E8-A803-4D07-A1F8-072D42BB1886} = {6F9EFBFD-1F4B-4F54-87AC-ED86A0C28859}
+		{13F73404-1A3A-4087-996C-1FA8684A9C12} = {6F9EFBFD-1F4B-4F54-87AC-ED86A0C28859}
+		{8C6B231E-9485-44BD-81FE-7AF983BE091A} = {6F9EFBFD-1F4B-4F54-87AC-ED86A0C28859}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95AB41A6-7899-42E0-8683-988107E814C1}
