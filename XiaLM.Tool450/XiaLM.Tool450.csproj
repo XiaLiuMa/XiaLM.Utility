@@ -73,6 +73,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="source\common\Base64Helper.cs" />
+    <Compile Include="source\common\CacheHelper.cs" />
     <Compile Include="source\common\ChartConvertHelp.cs" />
     <Compile Include="source\common\CmdHelper.cs" />
     <Compile Include="source\common\ConvertHelper.cs" />
