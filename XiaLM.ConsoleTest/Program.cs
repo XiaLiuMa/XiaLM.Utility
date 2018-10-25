@@ -1,5 +1,6 @@
 ﻿using System;
 using XiaLM.ConsoleTest.LogTest;
+using XiaLM.Log;
 using XiaLM.Weather.source;
 
 namespace XiaLM.ConsoleTest
@@ -8,6 +9,7 @@ namespace XiaLM.ConsoleTest
     {
         static void Main(string[] args)
         {
+            LogOutPut.GetInstance().Init("127.0.0.1",12345);
             Console.WriteLine("控制台程序已启动，输入Q/q退出程序！");
             string txt = string.Empty;
             while (!(txt = Console.ReadLine()).ToUpper().Equals("Q"))

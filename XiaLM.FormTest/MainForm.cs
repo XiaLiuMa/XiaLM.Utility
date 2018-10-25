@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XiaLM.FormTest.LogTest;
 
 namespace XiaLM.FormTest
 {
@@ -15,6 +16,11 @@ namespace XiaLM.FormTest
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            new LogT1().Test();
         }
     }
 }

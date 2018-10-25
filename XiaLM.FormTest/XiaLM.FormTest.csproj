@@ -54,6 +54,7 @@
     <Compile Include="CAN\CanForm.Designer.cs">
       <DependentUpon>CanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogTest\LogT1.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CAN\CanForm.resx">
       <DependentUpon>CanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MicrosoftSpeech\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -100,6 +104,10 @@
     <ProjectReference Include="..\XiaLM.CAN\XiaLM.CAN.csproj">
       <Project>{E32EF263-7356-4CB6-BD70-1F1818511EFC}</Project>
       <Name>XiaLM.CAN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XiaLM.Log\XiaLM.Log.csproj">
+      <Project>{D80BC582-6AF3-42AC-B6F9-EE563E72A2C5}</Project>
+      <Name>XiaLM.Log</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

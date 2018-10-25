@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using XiaLM.Log;
 
 namespace XiaLM.FormTest
 {
@@ -11,10 +12,11 @@ namespace XiaLM.FormTest
         [STAThread]
         static void Main()
         {
+            LogOutPut.GetInstance().Init("127.0.0.1", 12345);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
-            Application.Run(new MicrosoftSpeech.MainForm());
+            Application.Run(new MainForm());
+            //Application.Run(new MicrosoftSpeech.MainForm());
         }
     }
 }

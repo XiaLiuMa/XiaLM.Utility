@@ -16,7 +16,8 @@ namespace XiaLM.Logger
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MainForm.GetInstance());
+            //Application.Run(MainForm.GetInstance());
+            Application.Run(new IndexForm());
         }
     }
 }
