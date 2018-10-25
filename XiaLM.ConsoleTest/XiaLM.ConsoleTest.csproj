@@ -44,11 +44,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogTest\LogT1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XiaLM.Log\XiaLM.Log.csproj">
+      <Project>{D80BC582-6AF3-42AC-B6F9-EE563E72A2C5}</Project>
+      <Name>XiaLM.Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
