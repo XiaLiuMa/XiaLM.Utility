@@ -120,8 +120,12 @@
     <Compile Include="source\webspider\evenargs\OnStartEventArgs.cs" />
     <Compile Include="source\webspider\ICrawler.cs" />
     <Compile Include="source\webspider\XlmCrawler.cs" />
+    <Compile Include="source\xml_sample\Config.cs" />
+    <Compile Include="source\xml_sample\XmlSample.cs" />
+    <Compile Include="source\xml_sample\XmlSerializeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="source\xml_sample\Config.xml" />
     <Content Include="说明.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -57,20 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Help\FormStyleHelper.cs" />
+    <Compile Include="Help\XmlSerializeHelper.cs" />
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IndexForm.Designer.cs">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogRealize.cs" />
-    <Compile Include="Model\LogMessage.cs" />
-    <Compile Include="Model\LogPage.cs" />
-    <Compile Include="Model\UDPMessage.cs" />
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="Realize\LogRealize.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UDPRealize.cs" />
-    <Compile Include="UDP\UDPServer.cs" />
+    <Compile Include="Realize\UdpRealize.cs" />
     <Compile Include="UserControls\LookLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,45 +81,25 @@
     <Compile Include="UserControls\MyTabPage.Designer.cs">
       <DependentUpon>MyTabPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility\UtilityProcess.cs" />
+    <Compile Include="Help\UtilityProcess.cs" />
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UserControls\LookLogForm.resx">
       <DependentUpon>LookLogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MyTabPage.resx">
       <DependentUpon>MyTabPage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="config.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

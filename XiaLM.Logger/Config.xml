@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <UdpServer>
+    <Ip>127.0.0.1</Ip>
+    <Ip>192.168.2.101</Ip>
+    <Port>51888</Port>
+  </UdpServer>
+</Config>

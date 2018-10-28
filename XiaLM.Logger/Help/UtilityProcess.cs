@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XiaLM.Logger.Utility
+namespace XiaLM.Logger.Help
 {
     /// <summary>
     /// 程序启动帮助类
