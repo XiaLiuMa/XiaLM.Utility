@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using XiaLM.Logger.Help;
+using XiaLM.Logger.Model;
 using XiaLM.Logger.Realize;
 using XiaLM.Logger.UserControls;
 
@@ -41,15 +42,19 @@ namespace XiaLM.Logger
         /// 新增客户端事件
         /// </summary>
         /// <param name="obj"></param>
-        private void UDPServer_ClientInsertEvent(System.Net.EndPoint obj)
+        private void UDPServer_ClientInsertEvent(UdpClientInfo obj)
         {
             if (obj == null) return;
-            TabPage tabPage = new TabPage(obj.ToString()) { Dock = DockStyle.Fill };
+            TabPage tabPage = new TabPage(obj.clientname)
+            {
+                Dock = DockStyle.Fill,
+                ToolTipText = obj.endpoint
+            };
             tabPage.Controls.Add(new MyTabPage());
             this.Invoke(new Action(() =>
             {
                 this.tabControl1.TabPages.Add(tabPage); //增加TabPage
-                this.comBoxClient.Items.Add(obj.ToString());
+                this.comBoxClient.Items.Add($"{obj.clientname}");
                 this.comBoxClient.SelectedIndex = this.tabControl1.SelectedIndex;
             }));
         }
@@ -59,14 +64,14 @@ namespace XiaLM.Logger
         /// </summary>
         /// <param name="ePint"></param>
         /// <param name="inMsg"></param>
-        private void UDPServer_MessageInsertEvent(System.Net.EndPoint ePint, InMsg inMsg)
+        private void UDPServer_MessageInsertEvent(string ePint, InMsg inMsg)
         {
             string msgStr = $"[{inMsg.Type}][{inMsg.Time}]{inMsg.Message}|{inMsg.Exception}\r\n";
             this.Invoke(new Action(() =>
             {
                 for (int i = 0; i < this.tabControl1.TabPages.Count; i++)
                 {
-                    if (this.tabControl1.TabPages[i].Text.Equals(ePint.ToString()))
+                    if (this.tabControl1.TabPages[i].ToolTipText.Equals(ePint))
                     {
                         ((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]).Text += msgStr;
                         int txtLenth = ((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]).TextLength;  //字节长度
@@ -168,13 +173,13 @@ namespace XiaLM.Logger
         {
             foreach (Form frm in Application.OpenForms)
             {
-                if (frm.Name.Equals("LookLogForm")) //
+                if (frm.Name.Equals("LookLogForm"))
                 {
                     frm.BringToFront(); //至于屏幕第一位置
                     return;
                 }
             }
-            string client = "XiaLM.ConsoleTest";
+            string client = (string)this.comBoxClient.SelectedItem;
             string fName = $"Log/{client}_{DateTime.Now.ToString("yyyy.MM.dd.HH")}.log";
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + fName))
             {

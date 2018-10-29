@@ -66,6 +66,7 @@
       <DependentUpon>IndexForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\UdpClientInfo.cs" />
     <Compile Include="Realize\LogRealize.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

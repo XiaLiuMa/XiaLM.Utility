@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -15,16 +16,16 @@ namespace XiaLM.Logger.Realize
     public class UdpRealize
     {
         private Socket server;
-        private List<EndPoint> clients;
+        private List<UdpClientInfo> clients;
         private CancellationTokenSource rToken;
         /// <summary>
         /// 新客户端插入事件
         /// </summary>
-        public event Action<EndPoint> ClientInsertEvent = (p) => { };
+        public event Action<UdpClientInfo> ClientInsertEvent = (p) => { };
         /// <summary>
         /// 新消息插入事件
         /// </summary>
-        public event Action<EndPoint, InMsg> MessageInsertEvent = (p1, p2) => { };
+        public event Action<string, InMsg> MessageInsertEvent = (p1, p2) => { };
 
         public UdpRealize()
         {
@@ -32,7 +33,7 @@ namespace XiaLM.Logger.Realize
             if (!File.Exists(configPath)) throw new Exception("未找到配置文件！");
             Config config = XmlSerializeHelper.LoadXmlToObject<Config>(configPath);
             if (config == null) throw new Exception("配置文件格式不正确！");
-            clients = new List<EndPoint>();
+            clients = new List<UdpClientInfo>();
             server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             server.Bind(new IPEndPoint(IPAddress.Parse(config.UdpServer.Ip), config.UdpServer.Port));//绑定端口号和IP
         }
@@ -69,51 +70,60 @@ namespace XiaLM.Logger.Realize
                     string message = Encoding.UTF8.GetString(buffer, 0, length);
                     InMsg imsg = JsonConvert.DeserializeObject<InMsg>(message);
                     if (imsg == null) break;
-                    if (!clients.Contains(point))
+                    if (imsg.Type.Equals("INFO") || imsg.Type.Equals("WARN") || imsg.Type.Equals("ERROR") || imsg.Type.Equals("FATAL") || imsg.Type.Equals("DEBUG"))
                     {
-                        clients.Add(point);
-                        ClientInsertEvent(point);   //插入客户端
-                    }
-                    MessageInsertEvent(point, imsg);  //插入消息
-                    if (imsg.Type.Equals("INFO"))
-                    {
-                        LogRealize.Info($"--[{imsg.Time}]{imsg.Message}",imsg.Client);
-                    }
-                    if (imsg.Type.Equals("WARN"))
-                    {
-                        LogRealize.Warn($"--[{imsg.Time}]{imsg.Message}", imsg.Client);
-                    }
-                    if (imsg.Type.Equals("ERROR"))
-                    {
-                        if (imsg.Exception == null)
+                        UdpClientInfo client = new UdpClientInfo()
                         {
-                            LogRealize.Error($"--[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            endpoint = point.ToString(),
+                            clientname = imsg.Client
+                        };
+                        if (!clients.Any(p => p.endpoint.Equals(client.endpoint)))
+                        {
+                            clients.Add(client);
+                            ClientInsertEvent(client);   //插入客户端
                         }
-                        else
+                        MessageInsertEvent(point.ToString(), imsg);  //插入消息
+
+                        if (imsg.Type.Equals("INFO"))
                         {
-                            LogRealize.Error(imsg.Exception, imsg.Client, $"--[{imsg.Time}]{imsg.Message}");
+                            LogRealize.Info($"[{imsg.Time}]{imsg.Message}", imsg.Client);
                         }
-                    }
-                    if (imsg.Type.Equals("FATAL"))
-                    {
-                        if (imsg.Exception == null)
+                        if (imsg.Type.Equals("WARN"))
                         {
-                            LogRealize.Fatal($"--[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            LogRealize.Warn($"[{imsg.Time}]{imsg.Message}", imsg.Client);
                         }
-                        else
+                        if (imsg.Type.Equals("ERROR"))
                         {
-                            LogRealize.Fatal(imsg.Exception, imsg.Client, $"--[{imsg.Time}]{imsg.Message}");
+                            if (imsg.Exception == null)
+                            {
+                                LogRealize.Error($"[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            }
+                            else
+                            {
+                                LogRealize.Error(imsg.Exception, imsg.Client, $"[{imsg.Time}]{imsg.Message}");
+                            }
                         }
-                    }
-                    if (imsg.Type.Equals("DEBUG"))
-                    {
-                        if (imsg.Exception == null)
+                        if (imsg.Type.Equals("FATAL"))
                         {
-                            LogRealize.Debug($"--[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            if (imsg.Exception == null)
+                            {
+                                LogRealize.Fatal($"[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            }
+                            else
+                            {
+                                LogRealize.Fatal(imsg.Exception, imsg.Client, $"[{imsg.Time}]{imsg.Message}");
+                            }
                         }
-                        else
+                        if (imsg.Type.Equals("DEBUG"))
                         {
-                            LogRealize.Debug(imsg.Exception, imsg.Client, $"--[{imsg.Time}]{imsg.Message}");
+                            if (imsg.Exception == null)
+                            {
+                                LogRealize.Debug($"[{imsg.Time}]{imsg.Message}", imsg.Client);
+                            }
+                            else
+                            {
+                                LogRealize.Debug(imsg.Exception, imsg.Client, $"[{imsg.Time}]{imsg.Message}");
+                            }
                         }
                     }
                 }
@@ -123,10 +133,10 @@ namespace XiaLM.Logger.Realize
         /// <summary>
         /// 移除指定客户端
         /// </summary>
-        /// <param name="num"></param>
-        public void RemoveClientAt(int num)
+        /// <param name="clientNum"></param>
+        public void RemoveClientAt(int clientNum)
         {
-            clients.RemoveAt(num);
+            clients.RemoveAt(clientNum);
         }
 
         /// <summary>
