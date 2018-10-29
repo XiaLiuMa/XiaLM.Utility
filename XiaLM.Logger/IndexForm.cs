@@ -175,7 +175,7 @@ namespace XiaLM.Logger
                 }
             }
             string client = "XiaLM.ConsoleTest";
-            string fName = $"Log/{client}_{DateTime.Now.ToString("yyyy.MM.dd.hh")}.log";
+            string fName = $"Log/{client}_{DateTime.Now.ToString("yyyy.MM.dd.HH")}.log";
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + fName))
             {
                 MessageBox.Show("未找到日志文件", "常规错误", MessageBoxButtons.OK);

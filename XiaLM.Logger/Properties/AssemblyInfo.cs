@@ -35,6 +35,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-//为项目注册Log4Net.config配置文件
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
-[assembly: log4net.Config.Repository]
+//为项目注册Log4Net.config配置文件(如果在这里标注就会写死，要动态修改就不要在这里配置，在项目中加载！)
+//[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+//[assembly: log4net.Config.Repository]

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <Id>2018030000001</Id>
+  <Name>关关</Name>
+  <WakeupWords>你好关关</WakeupWords>
+  <SelfInfosCN>
+    <string>大家好！！！</string>
+    <string>我是来自海关的--关关,</string>
+    <string>非常高兴在这里与您相遇！</string>
+    <string>你有关于海关的任何问题都可以问我。</string>
+    <string>提问前请先叫我“你好关关”。</string>
+    <string>欢迎提问！</string>
+  </SelfInfosCN>
+  <SelfInfosEN>
+    <string>Hello everyone!!!</string>
+    <string>I am from the customs--关关,</string>
+    <string>I am very happy to meet you here!</string>
+    <string>You can ask me any questions about customs.</string>
+    <string>Please call my '你好关关' before asking questions.</string>
+    <string>Welcome to ask questions!</string>
+  </SelfInfosEN>
+  <AudioCardName>MaxMicrophone</AudioCardName>
+  <MapSetting>
+    <IsOpenMapCharge>false</IsOpenMapCharge>
+    <LowPower>10</LowPower>
+  </MapSetting>
+  <VariableLayout>
+    <Informant>Mandarin</Informant>
+    <Sex>Woman</Sex>
+    <Volume>50</Volume>
+    <Speed>50</Speed>
+    <ServerIP>192.168.1.5</ServerIP>
+    <ServerPort>8080</ServerPort>
+    <MapLocalIp>127.0.0.1</MapLocalIp>
+    <MapLocalPort>1445</MapLocalPort>
+    <ScannerSeralPort>11</ScannerSeralPort>
+    <ScannerBaudRate>115200</ScannerBaudRate>
+    <Explain>这是个测试描述</Explain>
+    <UpdateExePath>UpdateProgram\ProgramUpdateView.exe</UpdateExePath>
+  </VariableLayout>
+  <Device>
+    <MianPanelProt>Com4</MianPanelProt>
+    <MianPanelBaudRate>115200</MianPanelBaudRate>
+    <ChestPanelProt>Com5</ChestPanelProt>
+    <ChestPanelBaudRate>115200</ChestPanelBaudRate>
+    <GsmPanelPort>Com3</GsmPanelPort>
+    <GsmPanelBaudRate>115200</GsmPanelBaudRate>
+    <GsmDefaultPhoneNum>13797090547</GsmDefaultPhoneNum>
+  </Device>
+</Config>

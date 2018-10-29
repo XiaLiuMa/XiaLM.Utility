@@ -35,16 +35,16 @@ namespace XiaLM.Logger.UserControls
         private void LookLogForm_Load(object sender, EventArgs e)
         {
             recordFormSize = this.Size;
-            WriteLogFileToTexBox(Fname);
+            WriteLogFileToTexBox(Fname).Employ();
         }
 
         /// <summary>
         /// 读取日志文件写入界面文本框
         /// </summary>
         /// <param name="fName"></param>
-        private void WriteLogFileToTexBox(string fName)
+        private async Task WriteLogFileToTexBox(string fName)
         {
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 string[] strArray = File.ReadAllLines(fName);
                 if (strArray == null || strArray.Length <= 0) return;
@@ -52,33 +52,26 @@ namespace XiaLM.Logger.UserControls
                 this.Invoke(new Action(() =>
                 {
                     this.richTextBox1.Lines = DefaultList.ToArray();
-                    this.labelDefault.Text = $"{DefaultList.Count}个";
                 }));
 
-                foreach (var item in strArray)
+                string temStr = string.Empty;   //临时字符串
+                for (int i = 0; i < strArray.Length; i++)
                 {
-                    if (item.StartsWith("[INFO]"))
+                    if (strArray[i].StartsWith("[INFO]")
+                        || strArray[i].StartsWith("[WARN]")
+                        || strArray[i].StartsWith("[ERROR]")
+                        || strArray[i].StartsWith("[FATAL]")
+                        || strArray[i].StartsWith("[DEBUG]"))
                     {
-                        InfoList?.Add(item);
+                        StrClassify(temStr);
+                        temStr = strArray[i];
                     }
-                    if (item.StartsWith("[WARN]"))
+                    else
                     {
-                        WarnList?.Add(item);
-                    }
-                    if (item.StartsWith("[ERROR]"))
-                    {
-                        ErrorList?.Add(item);
-                    }
-                    if (item.StartsWith("[FATAL]"))
-                    {
-                        FatalList?.Add(item);
-                    }
-                    if (item.StartsWith("[DEBUG]"))
-                    {
-                        DebugList?.Add(item);
+                        temStr += "\r\n" + strArray[i];
                     }
                 }
-
+                StrClassify(temStr);    //处理最后一行
                 this.Invoke(new Action(() =>
                 {
                     this.labelInfo.Text = $"{InfoList.Count}个";
@@ -86,8 +79,39 @@ namespace XiaLM.Logger.UserControls
                     this.labelError.Text = $"{ErrorList.Count}个";
                     this.labelFatal.Text = $"{FatalList.Count}个";
                     this.labelDubeg.Text = $"{DebugList.Count}个";
+                    int defaultCount = InfoList.Count + WarnList.Count + ErrorList.Count + FatalList.Count + DebugList.Count;
+                    this.labelDefault.Text = $"{defaultCount}个";
                 }));
             });
+        }
+
+        /// <summary>
+        /// 字符串分类
+        /// </summary>
+        /// <param name="txt"></param>
+        private void StrClassify(string txt)
+        {
+            if (string.IsNullOrEmpty(txt)) return;
+            if (txt.StartsWith("[INFO]"))
+            {
+                InfoList.Add(txt);
+            }
+            if (txt.StartsWith("[WARN]"))
+            {
+                WarnList.Add(txt);
+            }
+            if (txt.StartsWith("[ERROR]"))
+            {
+                ErrorList.Add(txt);
+            }
+            if (txt.StartsWith("[FATAL]"))
+            {
+                FatalList.Add(txt);
+            }
+            if (txt.StartsWith("[DEBUG]"))
+            {
+                DebugList.Add(txt);
+            }
         }
 
         /// <summary>
