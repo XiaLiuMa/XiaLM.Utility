@@ -15,7 +15,7 @@ namespace XiaLM.Logger
         /// 记录上一次窗体尺寸
         /// </summary>
         private Size recordFormSize;
-        private bool IsStart;   //是否启动监控
+        private bool IsStart = false;   //是否启动监控
         private UdpRealize server;
 
         public IndexForm()
@@ -73,9 +73,7 @@ namespace XiaLM.Logger
                 {
                     if (this.tabControl1.TabPages[i].ToolTipText.Equals(ePint))
                     {
-                        ((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]).Text += msgStr;
-                        int txtLenth = ((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]).TextLength;  //字节长度
-                        FormStyleHelper.SetCursorToTextBoxBase(((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]), txtLenth, 0);
+                        ((RichTextBox)this.tabControl1.TabPages[i].Controls[0].Controls[0]).AppendText(msgStr);
                     }
                 }
             }));
@@ -94,7 +92,7 @@ namespace XiaLM.Logger
                 this.butStartMonitor.Text = "启动监控";
                 IsStart = false;
             }
-            if (!IsStart)
+            else
             {
                 server.StartRecive();
                 this.butStartMonitor.Text = "停止监控";
@@ -135,7 +133,16 @@ namespace XiaLM.Logger
         /// <param name="e"></param>
         private void butPause_Click(object sender, EventArgs e)
         {
-
+            if (!((RichTextBox)this.tabControl1.SelectedTab.Controls[0].Controls[0]).HideSelection)
+            {
+                ((RichTextBox)this.tabControl1.SelectedTab.Controls[0].Controls[0]).HideSelection = true;
+                this.butPause.Text = "开始";
+            }
+            else
+            {
+                ((RichTextBox)this.tabControl1.SelectedTab.Controls[0].Controls[0]).HideSelection = false;
+                this.butPause.Text = "暂停";
+            }   
         }
 
         /// <summary>
