@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
+using XiaLM.ConsoleTest.Model;
 using XiaLM.Log;
+using XiaLM.Tool450.source.common;
 
 namespace XiaLM.ConsoleTest.LogTest
 {
@@ -25,6 +28,12 @@ namespace XiaLM.ConsoleTest.LogTest
                 Thread.Sleep(TimeSpan.FromSeconds(1));
             }
             
+        }
+
+        public void Test1()
+        {
+            string strl = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory+ "AlgorithmClient_config.json");
+            Rootobject obj = SerializeHelper.SerializeJsonToObject<Rootobject>(strl);
         }
     }
 }

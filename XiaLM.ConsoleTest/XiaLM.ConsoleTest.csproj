@@ -45,16 +45,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogTest\LogT1.cs" />
+    <Compile Include="Model\Rootobject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AlgorithmClient_config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XiaLM.Log\XiaLM.Log.csproj">
       <Project>{D80BC582-6AF3-42AC-B6F9-EE563E72A2C5}</Project>
       <Name>XiaLM.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XiaLM.Tool450\XiaLM.Tool450.csproj">
+      <Project>{E4BFD6BC-1F1F-4D77-85EC-5CA400E3B368}</Project>
+      <Name>XiaLM.Tool450</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
