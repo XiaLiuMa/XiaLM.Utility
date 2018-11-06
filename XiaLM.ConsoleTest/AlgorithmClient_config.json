@@ -1,0 +1,9 @@
+﻿{
+  "AlgorithmIp": "192.168.110.147",
+  "AlgorithmPort": 6687,
+  "FaceContrastEndpoint": "maxvision.eicp.net:8020",
+  "CameraIp": "192.168.1.108",
+  "CameraPort": 4906,
+  "CameraEndpoint": "192.168.1.108:80",
+  "FilteringArea": 25
+}

@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using XiaLM.Log.Help;
+using XiaLM.Log.Model;
 
 namespace XiaLM.Log
 {
@@ -16,7 +19,7 @@ namespace XiaLM.Log
         /// <summary>
         /// 是否允许写日志
         /// </summary>
-        public bool CanWriteLog;
+        public bool CanWriteLog = true;
         /// <summary>
         /// 是否允许UDP发送日志
         /// </summary>
@@ -42,21 +45,22 @@ namespace XiaLM.Log
             }
             return instance;
         }
-        public LogOutPut()
-        {
-            CanWriteLog = true;
-        }
 
         /// <summary>
         /// 初始化日志输出的UDP客户端
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public void Init(string ip, int port)
+        public void Init()
         {
+            string configPath = AppDomain.CurrentDomain.BaseDirectory + "Config.xml";
+            if (!File.Exists(configPath)) throw new Exception("未找到配置文件！");
+            Config config = XmlSerializeHelper.LoadXmlToObject<Config>(configPath);
+            if (config == null) throw new Exception("配置文件格式不正确！");
+
             CanSendLog = true;
             if (client == null) client = new UdpClient();
-            serverPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            serverPoint = new IPEndPoint(IPAddress.Parse(config.UdpServer.Ip), config.UdpServer.Port);
         }
 
         /// <summary>

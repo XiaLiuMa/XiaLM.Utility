@@ -29,7 +29,7 @@ namespace XiaLM.Logger.Realize
 
         public UdpRealize()
         {
-            string configPath = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
+            string configPath = AppDomain.CurrentDomain.BaseDirectory + "Config.xml";
             if (!File.Exists(configPath)) throw new Exception("未找到配置文件！");
             Config config = XmlSerializeHelper.LoadXmlToObject<Config>(configPath);
             if (config == null) throw new Exception("配置文件格式不正确！");
