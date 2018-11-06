@@ -11,9 +11,8 @@ namespace XiaLM.Log.Model
     /// </summary>
     public class Config
     {
-        /// <summary>
-        /// 地图设置
-        /// </summary>
+        public bool CanWriteLog { get; set; }
+        public bool CanSendLog { get; set; }
         public UdpServer UdpServer { get; set; }
     }
     /// <summary>

@@ -14,6 +14,31 @@ namespace XiaLM.Tool450.source.common
     public class ConvertHelper
     {
         /// <summary>
+        /// byte[]转16进制字符串
+        /// </summary>
+        /// <param name="bs">byte[]</param>
+        /// <param name="usefulLength">有效长度(默认不传递时转换全部字节数组)</param>
+        /// <returns></returns>
+        public static string BytesToX2Str(byte[] bs, int usefulLength = 0)
+        {
+            string tempStr = string.Empty;
+            for (int i = 0; i < bs.Length; i++)
+            {
+                tempStr += bs[i].ToString("X2");
+                if (usefulLength != 0 && bs.Length > usefulLength)
+                {
+                    if (i >= usefulLength)
+                    {
+                        tempStr += "...";
+                        break;
+                    }
+                }
+            }
+            return tempStr;
+        }
+
+
+        /// <summary>
         /// IntPtr转string
         /// </summary>
         /// <param name="p"></param>

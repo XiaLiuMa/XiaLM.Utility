@@ -10,14 +10,6 @@ namespace XiaLM.Log
     public class Logger
     {
         /// <summary>
-        /// 注销Logger(取消写日志)
-        /// </summary>
-        public static void Cancell()
-        {
-            LogOutPut.GetInstance().CanWriteLog = false;
-        }
-
-        /// <summary>
         /// 输出INFO日志到LOG4NET
         /// </summary>
         /// <param name="msg"></param>

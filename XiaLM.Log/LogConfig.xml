@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
+  <CanWriteLog>true</CanWriteLog>
+  <CanSendLog>true</CanSendLog>
   <UdpServer>
     <Ip>127.0.0.1</Ip>
     <Port>51888</Port>

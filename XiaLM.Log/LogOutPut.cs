@@ -19,7 +19,7 @@ namespace XiaLM.Log
         /// <summary>
         /// 是否允许写日志
         /// </summary>
-        public bool CanWriteLog = true;
+        public bool CanWriteLog;
         /// <summary>
         /// 是否允许UDP发送日志
         /// </summary>
@@ -31,6 +31,7 @@ namespace XiaLM.Log
         private IPEndPoint serverPoint; 
         private static LogOutPut instance;
         private static readonly object lockObj = new object();
+
         public static LogOutPut GetInstance()
         {
             if (instance == null)
@@ -46,19 +47,14 @@ namespace XiaLM.Log
             return instance;
         }
 
-        /// <summary>
-        /// 初始化日志输出的UDP客户端
-        /// </summary>
-        /// <param name="ip"></param>
-        /// <param name="port"></param>
-        public void Init()
+        public LogOutPut()
         {
-            string configPath = AppDomain.CurrentDomain.BaseDirectory + "Config.xml";
+            string configPath = AppDomain.CurrentDomain.BaseDirectory + "LogConfig.xml";
             if (!File.Exists(configPath)) throw new Exception("未找到配置文件！");
             Config config = XmlSerializeHelper.LoadXmlToObject<Config>(configPath);
             if (config == null) throw new Exception("配置文件格式不正确！");
-
-            CanSendLog = true;
+            CanWriteLog = config.CanWriteLog;
+            CanSendLog = config.CanSendLog;
             if (client == null) client = new UdpClient();
             serverPoint = new IPEndPoint(IPAddress.Parse(config.UdpServer.Ip), config.UdpServer.Port);
         }

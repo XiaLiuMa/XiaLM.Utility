@@ -9,7 +9,6 @@ namespace XiaLM.ConsoleTest
     {
         static void Main(string[] args)
         {
-            LogOutPut.GetInstance().Init();
             Console.WriteLine("控制台程序已启动，输入Q/q退出程序！");
             string txt = string.Empty;
             while (!(txt = Console.ReadLine()).ToUpper().Equals("Q"))

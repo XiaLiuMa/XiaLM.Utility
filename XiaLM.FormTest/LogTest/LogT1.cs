@@ -21,6 +21,20 @@ namespace XiaLM.FormTest.LogTest
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
+                    byte code = 0x01;
+                    byte[] body = new byte[8] { 0x01,0x01, 0x01, 0x06, 0x01, 0x01, 0x08, 0x01};
+
+                    string temStr = string.Empty;
+                    for (int j = 0; j < body.Length; j++)
+                    {
+                        temStr += body[j].ToString("X2");
+                        if (j >= 5)
+                        {
+                            temStr += "...";
+                            break;
+                        }
+                    }
+                    Logger.Info($"接收算法数据，功能码[{code.ToString("X2")}],正文[{temStr}]！");
                 }
                 Thread.Sleep(TimeSpan.FromSeconds(1));
             }
