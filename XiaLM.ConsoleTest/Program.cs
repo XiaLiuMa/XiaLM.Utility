@@ -1,6 +1,6 @@
 ﻿using System;
+using XiaLM.ConsoleTest.AForge;
 using XiaLM.ConsoleTest.LogTest;
-using XiaLM.Log;
 using XiaLM.Weather.source;
 
 namespace XiaLM.ConsoleTest
@@ -22,7 +22,8 @@ namespace XiaLM.ConsoleTest
                 if (txt.ToUpper().Equals("T"))
                 {
                     //new LogT1().Test();
-                    new LogT1().Test1();
+                    //new LogT1().Test1();
+                    new ColorTest().SaveAllColorToBmp(@"D:\AllColor.bmp");
                 }
                 
             }

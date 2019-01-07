@@ -14,8 +14,23 @@ namespace XiaLM.FormTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //Application.Run(new MainForm());
             //Application.Run(new MicrosoftSpeech.MainForm());
+            //Application.Run(new Serial.SerialForm());
+            Application.Run(new Camera.CameraForm());
+        }
+
+        /// <summary>
+        /// 异常未捕获时发生
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            string exception = sender.ToString() + e.ExceptionObject.ToString();
+            MessageBox.Show(exception, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Environment.Exit(-1);
         }
     }
 }
